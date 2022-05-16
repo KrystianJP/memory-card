@@ -3,3 +3,7 @@
   grid-template-columns: repeat(auto-fit, 300px);
   gap: 10px;
 }
+
+.game:hover {
+  cursor: pointer;
+}
