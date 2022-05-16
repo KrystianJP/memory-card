@@ -1,0 +1,14 @@
+* {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.header {
+  display: flex;
+  height: 100px;
+  background: linear-gradient(to right, rgb(120, 197, 165), rgb(76, 199, 148))
+    rgb(76, 199, 148);
+  color: white;
+  align-items: center;
+  padding-left: 40px;
+}
