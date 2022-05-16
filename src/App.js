@@ -8,6 +8,7 @@ class App extends React.Component {
     super(props);
 
     this.incrementScore = this.incrementScore.bind(this);
+    this.resetScore = this.resetScore.bind(this);
 
     this.state = { score: 0 };
   }
@@ -18,6 +19,12 @@ class App extends React.Component {
     });
   }
 
+  resetScore() {
+    this.setState({
+      score: 0,
+    });
+  }
+
   render() {
     return (
       <div className="App">
@@ -25,7 +32,11 @@ class App extends React.Component {
           <h1>Memory Card Game</h1>
           <Score value={this.state.score} />
         </div>
-        <Game score={this.state.score} increment={this.incrementScore} />
+        <Game
+          score={this.state.score}
+          increment={this.incrementScore}
+          reset={this.resetScore}
+        />
       </div>
     );
   }
