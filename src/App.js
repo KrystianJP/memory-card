@@ -13,24 +13,41 @@ class App extends React.Component {
     this.hideModal = this.hideModal.bind(this);
     this.showModal = this.showModal.bind(this);
 
-    this.state = { score: 0, modalOpen: false };
+    this.state = { score: 0, modalOpen: false, modalText: "You Lose" };
   }
 
   incrementScore() {
-    this.setState({
-      score: this.state.score + 1,
-    });
+    let nextScore = this.state.score + 1;
+    this.setState(
+      {
+        score: this.state.score + 1,
+      },
+      () => {
+        if (nextScore === 12) {
+          this.setState({ modalText: "You Win" }, () => {
+            this.setState({ modalOpen: true });
+          });
+        }
+      },
+    );
   }
 
   resetScore() {
-    this.setState({
-      score: 0,
-    });
+    this.setState(
+      {
+        score: 0,
+        modalText: "You Lose",
+      },
+      () => {
+        this.showModal();
+      },
+    );
   }
 
   hideModal() {
     this.setState({
       modalOpen: false,
+      score: 0,
     });
   }
 
@@ -38,19 +55,15 @@ class App extends React.Component {
     this.setState({ modalOpen: true });
   }
 
-  componentDidUpdate() {
-    console.log(this.state);
-  }
-
   render() {
     return (
       <div className="App">
         <ReactModal
-          className="lose-modal"
+          className="modal"
           isOpen={this.state.modalOpen}
           ariaHideApp={false}
         >
-          <span>You Lose</span>
+          <span>{this.state.modalText}</span>
           <button type="button" onClick={this.hideModal}>
             Try Again
           </button>
@@ -65,7 +78,6 @@ class App extends React.Component {
           reset={this.resetScore}
           showModal={this.showModal}
         />
-        <button onClick={this.showModal}></button>
       </div>
     );
   }

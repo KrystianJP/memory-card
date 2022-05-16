@@ -30,13 +30,20 @@ class Game extends React.Component {
     if (this.state.chosenKeys.includes(key)) {
       this.setState({ chosenKeys: [] });
       this.props.reset();
-      this.props.showModal();
       return;
     }
     this.props.increment();
     this.setState({
       chosenKeys: this.state.chosenKeys.concat(key),
+      cards: this.shuffle(this.state.cards),
     });
+  }
+
+  shuffle(array) {
+    return array
+      .map((item) => ({ value: item, sort: Math.random() }))
+      .sort((a, b) => a.sort - b.sort)
+      .map((item) => item.value);
   }
 
   getCards() {
