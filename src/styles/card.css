@@ -4,4 +4,16 @@
   height: 300px;
   border-radius: 20px;
   border: 2px solid black;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.card img {
+  height: 100%;
+  -webkit-user-drag: none;
+  -khtml-user-drag: none;
+  -moz-user-drag: none;
+  -o-user-drag: none;
 }
