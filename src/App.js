@@ -1,5 +1,6 @@
 import React from "react";
 import Game from "./components/Game.js";
+import Score from "./components/Score";
 import "./app.css";
 
 function App() {
@@ -7,6 +8,7 @@ function App() {
     <div className="App">
       <div className="header">
         <h1>Memory Card Game</h1>
+        <Score score={0} />
       </div>
       <Game />
     </div>
