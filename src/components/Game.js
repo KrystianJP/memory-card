@@ -28,7 +28,9 @@ class Game extends React.Component {
 
   clicked(key) {
     if (this.state.chosenKeys.includes(key)) {
+      this.setState({ chosenKeys: [] });
       this.props.reset();
+      this.props.showModal();
       return;
     }
     this.props.increment();

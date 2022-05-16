@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Game from "./components/Game.js";
 import Score from "./components/Score";
+import ReactModal from "react-modal";
 import "./app.css";
 
 class App extends React.Component {
@@ -9,8 +10,10 @@ class App extends React.Component {
 
     this.incrementScore = this.incrementScore.bind(this);
     this.resetScore = this.resetScore.bind(this);
+    this.hideModal = this.hideModal.bind(this);
+    this.showModal = this.showModal.bind(this);
 
-    this.state = { score: 0 };
+    this.state = { score: 0, modalOpen: false };
   }
 
   incrementScore() {
@@ -25,13 +28,33 @@ class App extends React.Component {
     });
   }
 
+  hideModal() {
+    this.setState({
+      modalOpen: false,
+    });
+  }
+
+  showModal() {
+    this.setState({ modalOpen: true });
+  }
+
+  componentDidUpdate() {
+    console.log(this.state);
+  }
+
   render() {
     return (
       <div className="App">
-        <div className="lose-modal">
+        <ReactModal
+          className="lose-modal"
+          isOpen={this.state.modalOpen}
+          ariaHideApp={false}
+        >
           <span>You Lose</span>
-          <button type="button">Try Again</button>
-        </div>
+          <button type="button" onClick={this.hideModal}>
+            Try Again
+          </button>
+        </ReactModal>
         <div className="header">
           <h1>Memory Card Game</h1>
           <Score value={this.state.score} />
@@ -40,7 +63,9 @@ class App extends React.Component {
           score={this.state.score}
           increment={this.incrementScore}
           reset={this.resetScore}
+          showModal={this.showModal}
         />
+        <button onClick={this.showModal}></button>
       </div>
     );
   }
