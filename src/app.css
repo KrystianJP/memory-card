@@ -14,5 +14,6 @@ html {
     rgb(76, 199, 148);
   color: white;
   align-items: center;
-  padding-left: 40px;
+  padding: 0 60px;
+  justify-content: space-between;
 }
