@@ -12,6 +12,8 @@ function Game(props) {
     }
     return cards;
   }
+
+  return <div className="game">{cards}</div>;
 }
 
 export default Game;
