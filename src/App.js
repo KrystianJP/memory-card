@@ -28,6 +28,10 @@ class App extends React.Component {
   render() {
     return (
       <div className="App">
+        <div className="lose-modal">
+          <span>You Lose</span>
+          <button type="button">Try Again</button>
+        </div>
         <div className="header">
           <h1>Memory Card Game</h1>
           <Score value={this.state.score} />
