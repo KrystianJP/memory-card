@@ -36,7 +36,7 @@ html {
   background: rgb(76, 199, 148);
 }
 
-.lose-text {
+.win-lose-text {
   font-size: 60px;
   font-weight: bold;
   color: white;

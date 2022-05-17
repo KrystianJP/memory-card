@@ -55,7 +55,7 @@ class App extends React.Component {
           isOpen={this.state.loseModalOpen}
           ariaHideApp={false}
         >
-          <span className="lose-text">You Lose</span>
+          <span className="win-lose-text">You Lose</span>
           <span className="score">Score: {this.savedScore}</span>
           <button
             type="button"
@@ -71,7 +71,7 @@ class App extends React.Component {
           isOpen={this.state.winModalOpen}
           ariaHideApp={false}
         >
-          <span>You Win</span>
+          <span className="win-lose-text">You Win</span>
           <button
             type="button"
             onClick={() => {
