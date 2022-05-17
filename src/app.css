@@ -36,10 +36,16 @@ html {
   background: rgb(76, 199, 148);
 }
 
-.modal span {
+.lose-text {
   font-size: 60px;
   font-weight: bold;
   color: white;
+}
+
+.score {
+  font-size: 32px;
+  color: white;
+  font-weight: bold;
 }
 
 .modal button {

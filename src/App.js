@@ -9,11 +9,9 @@ class App extends React.Component {
     super(props);
 
     this.incrementScore = this.incrementScore.bind(this);
-    this.resetScore = this.resetScore.bind(this);
-    this.hideModal = this.hideModal.bind(this);
-    this.showModal = this.showModal.bind(this);
+    this.lose = this.lose.bind(this);
 
-    this.state = { score: 0, modalOpen: false, modalText: "You Lose" };
+    this.state = { score: 0, loseModalOpen: false, winModalOpen: false };
   }
 
   incrementScore() {
@@ -24,35 +22,29 @@ class App extends React.Component {
       },
       () => {
         if (nextScore === 12) {
-          this.setState({ modalText: "You Win" }, () => {
-            this.setState({ modalOpen: true });
-          });
+          this.setState({ winModalOpen: true });
+          this.resetScore();
         }
       },
     );
   }
 
-  resetScore() {
+  lose() {
+    this.savedScore = this.state.score;
     this.setState(
       {
-        score: 0,
-        modalText: "You Lose",
+        loseModalOpen: true,
       },
       () => {
-        this.showModal();
+        this.resetScore();
       },
     );
   }
 
-  hideModal() {
+  resetScore() {
     this.setState({
-      modalOpen: false,
       score: 0,
     });
-  }
-
-  showModal() {
-    this.setState({ modalOpen: true });
   }
 
   render() {
@@ -60,11 +52,32 @@ class App extends React.Component {
       <div className="App">
         <ReactModal
           className="modal"
-          isOpen={this.state.modalOpen}
+          isOpen={this.state.loseModalOpen}
           ariaHideApp={false}
         >
-          <span>{this.state.modalText}</span>
-          <button type="button" onClick={this.hideModal}>
+          <span className="lose-text">You Lose</span>
+          <span className="score">Score: {this.savedScore}</span>
+          <button
+            type="button"
+            onClick={() => {
+              this.setState({ loseModalOpen: false });
+            }}
+          >
+            Try Again
+          </button>
+        </ReactModal>
+        <ReactModal
+          className="modal"
+          isOpen={this.state.winModalOpen}
+          ariaHideApp={false}
+        >
+          <span>You Win</span>
+          <button
+            type="button"
+            onClick={() => {
+              this.setState({ winModalOpen: false });
+            }}
+          >
             Try Again
           </button>
         </ReactModal>
@@ -75,7 +88,7 @@ class App extends React.Component {
         <Game
           score={this.state.score}
           increment={this.incrementScore}
-          reset={this.resetScore}
+          lose={this.lose}
           showModal={this.showModal}
         />
       </div>

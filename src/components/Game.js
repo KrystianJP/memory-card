@@ -29,14 +29,18 @@ class Game extends React.Component {
   clicked(key) {
     if (this.state.chosenKeys.includes(key)) {
       this.setState({ chosenKeys: [] });
-      this.props.reset();
+      this.props.lose();
       return;
     }
     this.props.increment();
-    this.setState({
-      chosenKeys: this.state.chosenKeys.concat(key),
-      cards: this.shuffle(this.state.cards),
-    });
+    if (this.state.chosenKeys.length !== 11) {
+      this.setState({
+        chosenKeys: this.state.chosenKeys.concat(key),
+        cards: this.shuffle(this.state.cards),
+      });
+    } else {
+      this.setState({ chosenKeys: [] });
+    }
   }
 
   shuffle(array) {
